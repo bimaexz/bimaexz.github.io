@@ -84,6 +84,7 @@
     const heroBanner = document.querySelector(".hero-banner");
     const heroSocialList = document.querySelector(".hero-social-list");
     const scrollDown = document.querySelector(".scroll-down");
+      const aboutTitle = document.querySelector(".about .section-title");
 
     const phrases = ["WEB DEVELOPER", "UI UX DESIGNER", "TECHNICAL WRITER"];
     let currentPhrase = 0;
@@ -153,6 +154,7 @@
     observer.observe(heroSocialList);
     observer.observe(scrollDown);
     observer.observe(heroTitle);
+    observer.observe(aboutTitle);
   });
 </script>
 <body id="top" class="dark_theme">

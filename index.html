@@ -78,7 +78,78 @@
     observer.observe(heroSocialList);
   });
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const heroTitle = document.querySelector(".hero-title");
+    const heroBanner = document.querySelector(".hero-banner");
+    const heroSocialList = document.querySelector(".hero-social-list");
+    const scrollDown = document.querySelector(".scroll-down");
 
+    const phrases = ["Web Developer", "UI UX Designer", "Technical Writer"];
+    let currentPhrase = 0;
+    let isTyping = false;
+
+    function typeLoop(element, phrases, speed = 100, delay = 2000) {
+      let charIndex = 0;
+      let isDeleting = false;
+
+      function type() {
+        const currentText = phrases[currentPhrase];
+        if (!isDeleting) {
+          element.textContent = currentText.substring(0, charIndex + 1);
+          charIndex++;
+          if (charIndex === currentText.length) {
+            isDeleting = true;
+            setTimeout(type, delay);
+            return;
+          }
+        } else {
+          element.textContent = currentText.substring(0, charIndex - 1);
+          charIndex--;
+          if (charIndex === 0) {
+            isDeleting = false;
+            currentPhrase = (currentPhrase + 1) % phrases.length;
+          }
+        }
+        setTimeout(type, isDeleting ? speed / 2 : speed);
+      }
+
+      type();
+    }
+
+    const observerOptions = {
+      threshold: 0.3
+    };
+
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(entry => {
+        const target = entry.target;
+
+        if (target === heroBanner && entry.isIntersecting) {
+          heroBanner.classList.add("animate-fade-in");
+        }
+
+        if (target === heroSocialList && entry.isIntersecting) {
+          heroSocialList.classList.add("animate-slide-in");
+        }
+
+        if (target === scrollDown && entry.isIntersecting) {
+          scrollDown.classList.add("animate-slide-in");
+        }
+
+        if (target === heroTitle && entry.isIntersecting && !isTyping) {
+          isTyping = true;
+          typeLoop(heroTitle, phrases, 100, 2000);
+        }
+      });
+    }, observerOptions);
+
+    observer.observe(heroBanner);
+    observer.observe(heroSocialList);
+    observer.observe(scrollDown);
+    observer.observe(heroTitle);
+  });
+</script>
 <body id="top" class="dark_theme">
   <!-- 
     - #HEADER

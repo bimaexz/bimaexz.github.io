@@ -23,6 +23,61 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400;700&family=Saira+Stencil+One&display=swap"
     rel="stylesheet">
 </head>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const heroBanner = document.querySelector(".hero-banner");
+
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            heroBanner.classList.add("animate-fade-in");
+          } else {
+            heroBanner.classList.remove("animate-fade-in"); // jika mau animasi hilang saat keluar viewport
+          }
+        });
+      },
+      {
+        threshold: 0.3 // 30% terlihat
+      }
+    );
+
+    observer.observe(heroBanner);
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const heroBanner = document.querySelector(".hero-banner");
+    const heroSocialList = document.querySelector(".hero-social-list");
+
+    const observerOptions = {
+      threshold: 0.3
+    };
+
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(entry => {
+        if (entry.target === heroBanner) {
+          if (entry.isIntersecting) {
+            heroBanner.classList.add("animate-fade-in");
+          } else {
+            heroBanner.classList.remove("animate-fade-in");
+          }
+        }
+
+        if (entry.target === heroSocialList) {
+          if (entry.isIntersecting) {
+            heroSocialList.classList.add("animate-slide-in");
+          } else {
+            heroSocialList.classList.remove("animate-slide-in");
+          }
+        }
+      });
+    }, observerOptions);
+
+    observer.observe(heroBanner);
+    observer.observe(heroSocialList);
+  });
+</script>
 
 <body id="top" class="dark_theme">
   <!-- 

@@ -139,7 +139,12 @@
 
         if (target === heroTitle && entry.isIntersecting && !isTyping) {
           isTyping = true;
-          typeLoop(heroTitle, phrases, 100, 2000);
+          typeLoop(heroTitle, phrases, 200, 2000);
+        }
+        if (target === aboutTitle && entry.isIntersecting) {
+          aboutTitle.classList.add("animate-fade-in");
+        } else if (target === aboutTitle && !entry.isIntersecting) {
+          aboutTitle.classList.remove("animate-fade-in");
         }
       });
     }, observerOptions);

@@ -60,6 +60,18 @@
   50% { opacity: 0; }
 }
 
+.section-title {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 2s ease-out, transform 2s ease-out;
+}
+
+.section-title.animate-fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
 :root {
 
   /**

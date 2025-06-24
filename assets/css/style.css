@@ -13,6 +13,29 @@
 /*-----------------------------------*\
  * #CUSTOM PROPERTY
 \*-----------------------------------*/
+.hero-banner {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Ketika terlihat di layar */
+.hero-banner.animate-fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-social-list {
+  opacity: 0;
+  transform: translateX(-50px); /* Geser ke kiri dulu */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Saat terlihat di layar */
+.hero-social-list.animate-slide-in {
+  opacity: 1;
+  transform: translateX(0);
+}
 
 :root {
 
